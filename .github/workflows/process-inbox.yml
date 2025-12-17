@@ -45,6 +45,28 @@ jobs:
           # Create games directory
           mkdir -p "docs/Games/Assetto Corsa Rally"
           
+          # Create Python script for formatting
+          cat > /tmp/format_inbox.py << 'ENDPYTHON'
+import sys
+import re
+
+inbox_file = sys.argv[1]
+dest_file = sys.argv[2]
+
+with open(inbox_file, 'r', encoding='utf-8') as f:
+    content = f.read()
+
+# Convert h1 to h2
+content = re.sub(r'^# ', '## ', content, flags=re.MULTILINE)
+
+# Add source attribution if not present
+if '!!! info "Источник"' not in content:
+    content = content.rstrip() + '\n\n!!! info "Источник"\n    Auto-processed from INBOX\n'
+
+with open(dest_file, 'w', encoding='utf-8') as f:
+    f.write(content)
+ENDPYTHON
+          
           # Process each file
           echo "$INBOX_FILES" | while read inbox_file; do
             filename=$(basename "$inbox_file")
@@ -63,21 +85,8 @@ jobs:
               
               echo "  → Processing: $filename"
               
-              # Read and process file content
-              content=$(cat "$inbox_file")
-              
-              # Convert h1 to h2 and add source attribution
-              processed=$(python3 -c "
-import sys
-import re
-content = '''$content'''
-content = re.sub(r'^# ', '## ', content, flags=re.MULTILINE)
-if '!!! info \"Источник\"' not in content:
-    content = content.rstrip() + '\n\n!!! info \"Источник\"\n    Auto-processed from INBOX\n'
-print(content)
-")
-              
-              echo "$processed" > "$dest_file"
+              # Process file using Python script
+              python3 /tmp/format_inbox.py "$inbox_file" "$dest_file"
               echo "  → Saved to: $dest_file"
               
               # Delete from INBOX
