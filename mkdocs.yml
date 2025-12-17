@@ -18,6 +18,7 @@ theme:
   features:
     - content.code.copy
 nav:
+  - Начало: index.md
   - Games: Games
 markdown_extensions:
   - admonition
