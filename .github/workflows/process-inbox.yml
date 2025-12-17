@@ -26,6 +26,10 @@ jobs:
 
       - name: Install MkDocs
         run: pip install --upgrade pip && pip install mkdocs mkdocs-material
+      
+      - run: pip install mkdocs-awesome-pages-plugin
+      - run: pip install mkdocs-glightbox
+        
 
       - name: Process INBOX files
         env:
