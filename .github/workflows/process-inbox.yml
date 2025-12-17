@@ -26,53 +26,68 @@ jobs:
       - name: Install MkDocs
         run: pip install mkdocs mkdocs-material
 
-      - name: Find and process INBOX files
-        run: |
-          set -e
-          
-          # Find INBOX files (excluding README)
-          INBOX_FILES=$(find docs/INBOX -type f -name '*.md' ! -name 'README.md' | sort)
-          FILE_COUNT=$(echo "$INBOX_FILES" | grep -c . || true)
-          
-          if [ $FILE_COUNT -eq 0 ]; then
-            echo "No files to process"
-            exit 0
-          fi
-          
-          echo "Processing $FILE_COUNT files..."
-          mkdir -p "docs/Games/Assetto Corsa Rally"
-          
-          while read inbox_file; do
-            filename=$(basename "$inbox_file")
-            
-            # Check if file matches Assetto Corsa Rally patterns
-            if [[ $filename == *"Assetto"* ]] || [[ $filename == *"Rally"* ]] || [[ $filename == *"Performance"* ]] || [[ $filename == *"VR"* ]]; then
-              base_name="${filename%.md}"
-              
-              # Add game prefix if not present
-              if [[ ! $base_name =~ ^Assetto ]]; then
-                base_name="Assetto_Corsa_Rally_$base_name"
-              fi
-              
-              dest_file="docs/Games/Assetto Corsa Rally/${base_name}.md"
-              
-              echo "Processing: $filename → $base_name.md"
-              
-              # Read, format, and save file
-              python3 << EOF
+      - name: Process INBOX files
+        env:
+          INBOX_PATH: docs/INBOX
+          GAMES_PATH: docs/Games
+        run: python3 << 'PROCESS_SCRIPT'
+import os
 import re
-with open('$inbox_file', 'r', encoding='utf-8') as f:
-    content = f.read()
-content = re.sub(r'^# ', '## ', content, flags=re.MULTILINE)
-if '!!! info "Источник"' not in content:
-    content = content.rstrip() + '\n\n!!! info "Источник"\n    Auto-processed from INBOX\n'
-with open('$dest_file', 'w', encoding='utf-8') as f:
-    f.write(content)
-EOF
-              
-              rm "$inbox_file"
-            fi
-          done <<< "$INBOX_FILES"
+import sys
+from pathlib import Path
+
+inbox_dir = Path(os.getenv('INBOX_PATH', 'docs/INBOX'))
+games_dir = Path(os.getenv('GAMES_PATH', 'docs/Games'))
+
+# Find all markdown files in INBOX (except README)
+inbox_files = [f for f in inbox_dir.glob('*.md') if f.name != 'README.md']
+
+if not inbox_files:
+    print("No files to process")
+    sys.exit(0)
+
+print(f"Processing {len(inbox_files)} files...")
+
+for inbox_file in inbox_files:
+    filename = inbox_file.name
+    
+    # Check if it's Assetto Corsa Rally content
+    if any(keyword in filename for keyword in ['Assetto', 'Rally', 'Performance', 'VR']):
+        base_name = filename[:-3]  # Remove .md
+        
+        # Add game prefix if not present
+        if not base_name.startswith('Assetto'):
+            base_name = f"Assetto_Corsa_Rally_{base_name}"
+        
+        game_dir = games_dir / 'Assetto Corsa Rally'
+        game_dir.mkdir(parents=True, exist_ok=True)
+        dest_file = game_dir / f"{base_name}.md"
+        
+        print(f"  Processing: {filename}")
+        
+        # Read file
+        with open(inbox_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Convert h1 to h2
+        content = re.sub(r'^# ', '## ', content, flags=re.MULTILINE)
+        
+        # Add source attribution if not present
+        if '!!! info "Источник"' not in content:
+            content = content.rstrip() + '\n\n!!! info "Источник"\n    Auto-processed from INBOX\n'
+        
+        # Write to destination
+        with open(dest_file, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        print(f"  → Saved to: {dest_file}")
+        
+        # Delete from INBOX
+        inbox_file.unlink()
+        print(f"  → Deleted from INBOX")
+
+print("✅ Processing complete")
+PROCESS_SCRIPT
 
       - name: Validate MkDocs format
         run: mkdocs build --strict
@@ -82,14 +97,11 @@ EOF
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Stage all changes
           git add -A
           
-          # Check if there are changes to commit
           if ! git diff-index --quiet HEAD --; then
             git commit -m "Process INBOX: Auto-format and move files to Games"
             git push
-            echo "✅ Changes committed and pushed"
           else
-            echo "ℹ️  No changes to commit"
+            echo "No changes to commit"
           fi
