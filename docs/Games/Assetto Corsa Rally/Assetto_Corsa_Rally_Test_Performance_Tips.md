@@ -10,3 +10,5 @@ Performance tips for better frame rates in Assetto Corsa Rally. Monitor your sys
 
 Recommended graphics configurations for optimal visual quality and performance balance.
 
+!!! info "Источник"
+    Auto-processed from INBOX
