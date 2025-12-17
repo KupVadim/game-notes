@@ -17,9 +17,7 @@ theme:
         name: Тёмная тема
   features:
     - content.code.copy
-nav:
-  - Начало: index.md
-  - Games: Games
+
 markdown_extensions:
   - admonition
   - pymdownx.details
