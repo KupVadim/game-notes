@@ -116,4 +116,3 @@ ENDPYTHON
           else
             echo "ℹ️  No changes to commit"
           fi
-          fi
