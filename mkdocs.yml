@@ -19,7 +19,7 @@ theme:
     - content.code.copy
 nav:
   - Начало: index.md
-  - Games: Games
+  - Games: Games/
 markdown_extensions:
   - admonition
   - pymdownx.details
