@@ -18,6 +18,7 @@ theme:
   features:
     - content.code.copy
 nav:
+  - Games: Games
 markdown_extensions:
   - admonition
   - pymdownx.details
