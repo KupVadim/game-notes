@@ -28,7 +28,6 @@ jobs:
 
       - name: Find and process INBOX files
         run: |
-          #!/bin/bash
           set -e
           
           # Find INBOX files (excluding README)
@@ -41,39 +40,13 @@ jobs:
           fi
           
           echo "Processing $FILE_COUNT files..."
-          
-          # Create games directory
           mkdir -p "docs/Games/Assetto Corsa Rally"
           
-          # Create Python script for formatting
-          cat > /tmp/format_inbox.py << 'ENDPYTHON'
-import sys
-import re
-
-inbox_file = sys.argv[1]
-dest_file = sys.argv[2]
-
-with open(inbox_file, 'r', encoding='utf-8') as f:
-    content = f.read()
-
-# Convert h1 to h2
-content = re.sub(r'^# ', '## ', content, flags=re.MULTILINE)
-
-# Add source attribution if not present
-if '!!! info "Источник"' not in content:
-    content = content.rstrip() + '\n\n!!! info "Источник"\n    Auto-processed from INBOX\n'
-
-with open(dest_file, 'w', encoding='utf-8') as f:
-    f.write(content)
-ENDPYTHON
-          
-          # Process each file
-          echo "$INBOX_FILES" | while read inbox_file; do
+          while read inbox_file; do
             filename=$(basename "$inbox_file")
             
-            # Determine if it's Assetto Corsa Rally content
+            # Check if file matches Assetto Corsa Rally patterns
             if [[ $filename == *"Assetto"* ]] || [[ $filename == *"Rally"* ]] || [[ $filename == *"Performance"* ]] || [[ $filename == *"VR"* ]]; then
-              game="Assetto Corsa Rally"
               base_name="${filename%.md}"
               
               # Add game prefix if not present
@@ -81,21 +54,25 @@ ENDPYTHON
                 base_name="Assetto_Corsa_Rally_$base_name"
               fi
               
-              dest_file="docs/Games/$game/${base_name}.md"
+              dest_file="docs/Games/Assetto Corsa Rally/${base_name}.md"
               
-              echo "  → Processing: $filename"
+              echo "Processing: $filename → $base_name.md"
               
-              # Process file using Python script
-              python3 /tmp/format_inbox.py "$inbox_file" "$dest_file"
-              echo "  → Saved to: $dest_file"
+              # Read, format, and save file
+              python3 << EOF
+import re
+with open('$inbox_file', 'r', encoding='utf-8') as f:
+    content = f.read()
+content = re.sub(r'^# ', '## ', content, flags=re.MULTILINE)
+if '!!! info "Источник"' not in content:
+    content = content.rstrip() + '\n\n!!! info "Источник"\n    Auto-processed from INBOX\n'
+with open('$dest_file', 'w', encoding='utf-8') as f:
+    f.write(content)
+EOF
               
-              # Delete from INBOX
               rm "$inbox_file"
-              echo "  → Deleted from INBOX"
-            else
-              echo "  ⚠️  Skipping: $filename (unknown game type)"
             fi
-          done
+          done <<< "$INBOX_FILES"
 
       - name: Validate MkDocs format
         run: mkdocs build --strict
