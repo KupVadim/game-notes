@@ -39,3 +39,5 @@ markdown_extensions:
   - sane_lists
 plugins:
   - glightbox
+  - search
+  - awesome-pages
