@@ -63,26 +63,22 @@ jobs:
               
               echo "  → Processing: $filename"
               
-              # Apply formatting transformations
-              python3 << 'PYTHON'
+              # Read and process file content
+              content=$(cat "$inbox_file")
+              
+              # Convert h1 to h2 and add source attribution
+              processed=$(python3 -c "
 import sys
 import re
-
-with open("$inbox_file", "r", encoding="utf-8") as f:
-    content = f.read()
-
-# Convert h1 to h2
+content = '''$content'''
 content = re.sub(r'^# ', '## ', content, flags=re.MULTILINE)
-
-# Add source attribution if not present
-if '!!! info "Источник"' not in content:
-    content = content.rstrip() + '\n\n!!! info "Источник"\n    Auto-processed from INBOX\n'
-
-with open("$dest_file", "w", encoding="utf-8") as f:
-    f.write(content)
-
-print(f"  → Saved to: $dest_file")
-PYTHON
+if '!!! info \"Источник\"' not in content:
+    content = content.rstrip() + '\n\n!!! info \"Источник\"\n    Auto-processed from INBOX\n'
+print(content)
+")
+              
+              echo "$processed" > "$dest_file"
+              echo "  → Saved to: $dest_file"
               
               # Delete from INBOX
               rm "$inbox_file"
