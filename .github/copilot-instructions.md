@@ -148,32 +148,23 @@ mkdocs build
 - Preserve Russian language in all UI and main content
 - Use emoji sparingly; prefer Material icons via `material/icon-name` syntax where supported
 
-## INBOX Processing Workflow (Copilot Agent-Driven)
+## INBOX Processing Workflow (Fully Automated)
 
-The `.github/workflows/process-inbox.yml` workflow automatically triggers when:
+The `.github/workflows/process-inbox.yml` workflow automatically processes INBOX files when:
 - Files are added/modified in `docs/INBOX/`
 - The workflow file itself is modified
 
-**Workflow actions:**
+**Workflow automation:**
 1. Detects files in `docs/INBOX/`
-2. Creates a GitHub Issue labeled `agent-task` with processing checklist
-3. **Copilot Coding Agent can be invoked on the issue** to process files
+2. Auto-formats with MkDocs features:
+   - Converts `#` headers to `##` (no h1 at top)
+   - Adds source attribution block
+3. Validates with `mkdocs build --strict`
+4. Moves formatted files to `docs/Games/{GameName}/{FileName}.md`
+5. Deletes from INBOX
+6. Commits with message: `Process INBOX: Auto-format and move files to Games`
 
-### How to Use (Option A - Manual Agent Invocation)
-
-1. **Push file to INBOX**: Commit markdown file to `docs/INBOX/`
-2. **Workflow creates Issue**: GitHub Actions creates an issue with file list and checklist
-3. **Invoke Copilot Agent**: Open GitHub Issue and ask Copilot agent to process it
-   - In VS Code with GitHub Copilot, you can reference the issue or use the Copilot Chat
-   - Agent will have complete context from `.github/copilot-instructions.md`
-
-**Agent responsibility when processing INBOX files:**
-1. Enhance markdown with MkDocs features (admonitions, collapsible sections, etc.)
-2. Validate with `mkdocs build --strict`
-3. Move formatted file to correct destination (`docs/Games/{GameName}/`)
-4. Delete from INBOX
-5. Commit with clear message: `Process INBOX: Move {file} → Games/{GameName}/{file}`
-6. Close the issue once processing is complete
+**No manual intervention needed!** Files are automatically processed on every push to INBOX.
 
 ## Quick Reference: Useful mkdocs Commands
 
