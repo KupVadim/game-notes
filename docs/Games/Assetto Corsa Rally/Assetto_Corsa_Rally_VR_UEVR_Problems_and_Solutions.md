@@ -210,9 +210,9 @@ r.EyeAdaptation.VisualizeDebugType 1
 
 ## Итоговый чек-лист
 
-- [ ] Краш на инжекте → проверить OpenXR Toolkit (per‑app), попробовать OpenVR / Native Stereo
-- [ ] Пересвет → CVars (`r.ExposureOffset`, `r.ToneMapperGamma`, `r.Color.Mid`, `r.EyeAdaptationQuality`)
-- [ ] UI/курсор → UEVR cursor option + JoyToKey
-- [ ] Один глаз / артефакты → Native Stereo + LCD quality LOW + проверить апскейлер
-- [ ] ФПС → DLSS (без FG) + тени/отражения вниз
+- [x] Краш на инжекте → проверить OpenXR Toolkit (per‑app), попробовать OpenVR / Native Stereo
+- [x] Пересвет → CVars (`r.ExposureOffset`, `r.ToneMapperGamma`, `r.Color.Mid`, `r.EyeAdaptationQuality`)
+- [x] UI/курсор → UEVR cursor option + JoyToKey
+- [x] Один глаз / артефакты → Native Stereo + LCD quality LOW + проверить апскейлер
+- [x] ФПС → DLSS (без FG) + тени/отражения вниз
 
