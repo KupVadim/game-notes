@@ -2,11 +2,10 @@ name: Process INBOX Files
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - 'docs/INBOX/**'
-      - '.github/workflows/process-inbox.yml'
+      - "docs/INBOX/**"
+      - ".github/workflows/process-inbox.yml"
 
 permissions:
   contents: write
@@ -17,92 +16,110 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install MkDocs
-        run: pip install mkdocs mkdocs-material
+        run: pip install --upgrade pip && pip install mkdocs mkdocs-material
 
       - name: Process INBOX files
         env:
           INBOX_PATH: docs/INBOX
           GAMES_PATH: docs/Games
         run: |
-          python3 -c '
-import os
-import re
-import sys
-from pathlib import Path
+          python <<'PY'
+          import os
+          import re
+          import sys
+          from pathlib import Path
 
-inbox_dir = Path(os.getenv("INBOX_PATH", "docs/INBOX"))
-games_dir = Path(os.getenv("GAMES_PATH", "docs/Games"))
+          inbox_dir = Path(os.getenv("INBOX_PATH", "docs/INBOX"))
+          games_dir = Path(os.getenv("GAMES_PATH", "docs/Games"))
 
-# Find all markdown files in INBOX (except README)
-inbox_files = [f for f in inbox_dir.glob("*.md") if f.name != "README.md"]
+          if not inbox_dir.exists():
+              print(f"INBOX folder not found: {inbox_dir}")
+              sys.exit(0)
 
-if not inbox_files:
-    print("No files to process")
-    sys.exit(0)
+          inbox_files = [f for f in inbox_dir.glob("*.md") if f.name.lower() != "readme.md"]
 
-print(f"Processing {len(inbox_files)} files...")
+          if not inbox_files:
+              print("No files to process")
+              sys.exit(0)
 
-for inbox_file in inbox_files:
-    filename = inbox_file.name
-    
-    # Check if it'"'"'s Assetto Corsa Rally content
-    if any(keyword in filename for keyword in ["Assetto", "Rally", "Performance", "VR"]):
-        base_name = filename[:-3]  # Remove .md
-        
-        # Add game prefix if not present
-        if not base_name.startswith("Assetto"):
-            base_name = f"Assetto_Corsa_Rally_{base_name}"
-        
-        game_dir = games_dir / "Assetto Corsa Rally"
-        game_dir.mkdir(parents=True, exist_ok=True)
-        dest_file = game_dir / f"{base_name}.md"
-        
-        print(f"  Processing: {filename}")
-        
-        # Read file
-        with open(inbox_file, "r", encoding="utf-8") as f:
-            content = f.read()
-        
-        # Convert h1 to h2
-        content = re.sub(r"^# ", "## ", content, flags=re.MULTILINE)
-        
-        # Add source attribution if not present
-        if "!!! info \"Источник\"" not in content:
-            content = content.rstrip() + "\n\n!!! info \"Источник\"\n    Auto-processed from INBOX\n"
-        
-        # Write to destination
-        with open(dest_file, "w", encoding="utf-8") as f:
-            f.write(content)
-        
-        print(f"  → Saved to: {dest_file}")
-        
-        # Delete from INBOX
-        inbox_file.unlink()
-        print(f"  → Deleted from INBOX")
+          def slugify(name: str) -> str:
+              name = name.strip().replace(" ", "_")
+              name = re.sub(r"[^0-9A-Za-zА-Яа-я_\-\.]+", "_", name)
+              name = re.sub(r"_+", "_", name)
+              return name
 
-print("✅ Processing complete")
-          '
+          print(f"Processing {len(inbox_files)} file(s) from {inbox_dir}...")
 
-      - name: Validate MkDocs format
+          for inbox_file in inbox_files:
+              filename = inbox_file.name
+              lower = filename.lower()
+
+              # Heuristic routing: Assetto Corsa Rally
+              if any(k in lower for k in ["assetto", "rally", "uevr", "vr", "performance"]):
+                  game_dir = games_dir / "Assetto Corsa Rally"
+                  game_dir.mkdir(parents=True, exist_ok=True)
+
+                  base_name = inbox_file.stem
+                  base_name = slugify(base_name)
+
+                  if not base_name.lower().startswith("assetto"):
+                      base_name = f"Assetto_Corsa_Rally_{base_name}"
+
+                  dest_file = game_dir / f"{base_name}.md"
+
+                  # Avoid overwrite
+                  if dest_file.exists():
+                      dest_file = game_dir / f"{base_name}_{inbox_file.stat().st_mtime_ns}.md"
+
+                  print(f"- Processing: {filename}")
+
+                  content = inbox_file.read_text(encoding="utf-8")
+
+                  # Convert H1 -> H2 (only if present)
+                  content = re.sub(r"^# (.+)$", r"## \1", content, flags=re.MULTILINE)
+
+                  # Add source attribution if missing
+                  marker = '!!! info "Источник"'
+                  if marker not in content:
+                      content = content.rstrip() + '\n\n!!! info "Источник"\n    Auto-processed from INBOX\n'
+
+                  dest_file.write_text(content, encoding="utf-8")
+                  print(f"  → Saved to: {dest_file}")
+
+                  inbox_file.unlink()
+                  print("  → Deleted from INBOX")
+              else:
+                  print(f"- Skipped (no routing match): {filename}")
+
+          print("✅ Processing complete")
+          PY
+
+      - name: Validate MkDocs build
         run: mkdocs build --strict
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
+
           git add -A
-          
-          if ! git diff-index --quiet HEAD --; then
-            git commit -m "Process INBOX: Auto-format and move files to Games"
-            git push
-          else
+
+          if git diff --cached --quiet; then
             echo "No changes to commit"
+            exit 0
           fi
+
+          git commit -m "Process INBOX: Auto-format and move files to Games"
+
+          # Avoid push races if multiple pushes happen close together
+          git pull --rebase
+          git push
