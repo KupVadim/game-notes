@@ -98,6 +98,9 @@ jobs:
           EOF
           )
           
+          # Create label if it doesn't exist
+          gh label create "agent-task" --description "Task for Copilot agent to process" --color "FF6B6B" || true
+          
           # Check if issue already exists
           EXISTING=$(gh issue list --label "agent-task" --state open --json number | jq -r '.[0].number // empty')
           
