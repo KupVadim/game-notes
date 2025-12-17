@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -26,132 +24,91 @@ jobs:
           python-version: '3.11'
 
       - name: Install MkDocs
-        run: |
-          pip install mkdocs mkdocs-material
+        run: pip install mkdocs mkdocs-material
 
-      - name: Find INBOX files
-        id: find_files
+      - name: Find and process INBOX files
         run: |
-          FILES=$(find docs/INBOX -type f -name '*.md' ! -name 'README.md' | sort)
-          FILE_COUNT=$(echo "$FILES" | grep -c . || true)
+          #!/bin/bash
+          set -e
           
-          if [ $FILE_COUNT -gt 0 ]; then
-            echo "has_files=true" >> $GITHUB_OUTPUT
-            echo "$FILES" > /tmp/inbox_files.txt
-            echo "Found $FILE_COUNT files to process"
-            cat /tmp/inbox_files.txt
-          else
-            echo "has_files=false" >> $GITHUB_OUTPUT
-            echo "No files in INBOX"
+          # Find INBOX files (excluding README)
+          INBOX_FILES=$(find docs/INBOX -type f -name '*.md' ! -name 'README.md' | sort)
+          FILE_COUNT=$(echo "$INBOX_FILES" | grep -c . || true)
+          
+          if [ $FILE_COUNT -eq 0 ]; then
+            echo "No files to process"
+            exit 0
           fi
-
-      - name: Process INBOX files
-        if: steps.find_files.outputs.has_files == 'true'
-        run: |
-          # Function to detect game from filename
-          detect_game() {
-            filename=$1
-            if [[ $filename == *"Assetto"* ]] || [[ $filename == *"Rally"* ]] || [[ $filename == *"Performance"* ]] || [[ $filename == *"VR"* ]]; then
-              echo "Assetto Corsa Rally"
-            else
-              echo "Unknown"
-            fi
-          }
           
-          # Create games directory structure if needed
+          echo "Processing $FILE_COUNT files..."
+          
+          # Create games directory
           mkdir -p "docs/Games/Assetto Corsa Rally"
           
           # Process each file
-          while IFS= read -r file; do
-            if [ -f "$file" ]; then
-              filename=$(basename "$file")
-              
-              # Determine destination game
-              game=$(detect_game "$filename")
-              
-              if [ "$game" = "Unknown" ]; then
-                echo "⚠️  Skipping $filename - cannot determine game category"
-                continue
-              fi
-              
-              # Standardize filename to CamelCase_with_underscores
-              # Remove .md extension, apply naming convention
+          echo "$INBOX_FILES" | while read inbox_file; do
+            filename=$(basename "$inbox_file")
+            
+            # Determine if it's Assetto Corsa Rally content
+            if [[ $filename == *"Assetto"* ]] || [[ $filename == *"Rally"* ]] || [[ $filename == *"Performance"* ]] || [[ $filename == *"VR"* ]]; then
+              game="Assetto Corsa Rally"
               base_name="${filename%.md}"
               
-              # Ensure it starts with game name or is properly formatted
-              if [[ ! $base_name == *"_"* ]]; then
-                base_name="${game// /_}_${base_name}"
+              # Add game prefix if not present
+              if [[ ! $base_name =~ ^Assetto ]]; then
+                base_name="Assetto_Corsa_Rally_$base_name"
               fi
               
               dest_file="docs/Games/$game/${base_name}.md"
               
-              echo "Processing: $filename → $dest_file"
+              echo "  → Processing: $filename"
               
-              # Read file content
-              content=$(cat "$file")
-              
-              # Format with MkDocs features
-              formatted_content=$(python3 << 'PYEOF'
+              # Apply formatting transformations
+              python3 << 'PYTHON'
 import sys
-content = sys.stdin.read()
+import re
 
-# Ensure no # (h1) headers at top
-lines = content.split('\n')
-formatted_lines = []
-skip_first_h1 = True
+with open("$inbox_file", "r", encoding="utf-8") as f:
+    content = f.read()
 
-for line in lines:
-    if skip_first_h1 and line.startswith('# '):
-        formatted_lines.append(line.replace('# ', '## ', 1))
-        skip_first_h1 = False
-    else:
-        formatted_lines.append(line)
-
-formatted_content = '\n'.join(formatted_lines)
+# Convert h1 to h2
+content = re.sub(r'^# ', '## ', content, flags=re.MULTILINE)
 
 # Add source attribution if not present
-if '!!! info "Источник"' not in formatted_content:
-    formatted_content = formatted_content.rstrip() + '\n\n!!! info "Источник"\n    Original source: See copilot-instructions.md\n'
+if '!!! info "Источник"' not in content:
+    content = content.rstrip() + '\n\n!!! info "Источник"\n    Auto-processed from INBOX\n'
 
-sys.stdout.write(formatted_content)
-PYEOF
-              )
+with open("$dest_file", "w", encoding="utf-8") as f:
+    f.write(content)
+
+print(f"  → Saved to: $dest_file")
+PYTHON
               
-              # Write to destination
-              echo "$formatted_content" > "$dest_file"
-              echo "✅ Moved to: $dest_file"
+              # Delete from INBOX
+              rm "$inbox_file"
+              echo "  → Deleted from INBOX"
+            else
+              echo "  ⚠️  Skipping: $filename (unknown game type)"
             fi
-          done < /tmp/inbox_files.txt
+          done
 
       - name: Validate MkDocs format
-        if: steps.find_files.outputs.has_files == 'true'
-        run: |
-          mkdocs build --strict 2>&1 | tee build.log
-          if [ ${PIPESTATUS[0]} -eq 0 ]; then
-            echo "✅ MkDocs validation passed"
-          else
-            echo "❌ MkDocs validation failed"
-            exit 1
-          fi
+        run: mkdocs build --strict
 
-      - name: Commit and push
-        if: steps.find_files.outputs.has_files == 'true'
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Stage changes
-          git add docs/Games/
-          git rm docs/INBOX/*.md --ignore-unmatch || true
+          # Stage all changes
+          git add -A
           
-          # Check if there are changes
-          if git diff-index --quiet HEAD --; then
-            echo "No changes to commit"
-          else
-            # Get list of processed files for commit message
-            FILES=$(git diff --cached --name-only | grep -E '(Games|INBOX)' | tr '\n' ', ' | sed 's/,$//')
+          # Check if there are changes to commit
+          if ! git diff-index --quiet HEAD --; then
             git commit -m "Process INBOX: Auto-format and move files to Games"
             git push
             echo "✅ Changes committed and pushed"
+          else
+            echo "ℹ️  No changes to commit"
           fi
           fi
