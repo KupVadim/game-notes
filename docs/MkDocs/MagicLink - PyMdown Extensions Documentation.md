@@ -31,7 +31,7 @@ aliases:
 
 ```js
 // Пример явного авто‑линка
-<https://www.link.com>
+`<`https://www.link.com`>`
 ```
 
 ## Сокращённые (shorthand) ссылки на репозитории
