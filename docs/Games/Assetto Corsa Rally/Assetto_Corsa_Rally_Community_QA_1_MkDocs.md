@@ -1,10 +1,15 @@
 ## Video summary — Assetto Corsa Rally Community Q&A #1
 
-<a href="https://www.youtube.com/watch?v=rCY9pY0OvLY" target="_blank">
-  <img src="https://i.ytimg.com/vi/rCY9pY0OvLY/maxresdefault.jpg"
-       alt="Assetto Corsa Rally – Community Q&A #1"
-       style="border-radius: 8px;">
-</a>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+  <iframe
+    src="https://www.youtube.com/embed/rCY9pY0OvLY"
+    title="Assetto Corsa Rally – Community Q&A #1"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe>
+</div>
 
 !!! info "Источник"
     YouTube: https://www.youtube.com/watch?v=rCY9pY0OvLY  
