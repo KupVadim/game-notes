@@ -21,6 +21,8 @@ theme:
     - search.highlight
     - navigation.tabs
     - navigation.expand
+    - toc.follow
+    - navigation.path
 
 markdown_extensions:
   - admonition
