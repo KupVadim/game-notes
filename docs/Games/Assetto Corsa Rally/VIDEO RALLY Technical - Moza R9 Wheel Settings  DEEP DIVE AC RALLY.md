@@ -11,6 +11,8 @@ image: "![](https://i.ytimg.com/vi/m82D0HhOVbo/maxresdefault.jpg)"
 duration: "1005"
 watched:
 tags:
+  - moza
+  - Rally
 ---
 # Moza R9 Wheel Settings | DEEP DIVE [AC RALLY]
 

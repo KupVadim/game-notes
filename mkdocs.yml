@@ -17,6 +17,10 @@ theme:
         name: Тёмная тема
   features:
     - content.code.copy
+    - search.suggest
+    - search.highlight
+    - navigation.tabs
+    - navigation.expand
 
 markdown_extensions:
   - admonition
