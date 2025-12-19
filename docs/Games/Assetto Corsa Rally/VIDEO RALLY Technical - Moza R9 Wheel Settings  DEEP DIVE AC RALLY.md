@@ -30,34 +30,15 @@ type:: #type/video/youtube/new
   <iframe src="https://www.youtube.com/embed/m82D0HhOVbo" title="Moza R9 Wheel Settings | DEEP DIVE [AC RALLY]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
 </div>
 
-## Description
-
-In this video I deep dive into all the FFB settings available in the Moza Pit House Software and Assetto Corsa Rally. The settings you see on each screen are what I will be using to create my setups. I'm not saying these are the most realistic settings ever but just my interpretation from my on road, track and stage experiences.
-I will be playing around with these settings in the future to see if I can make them even more immersive but for now I will be very much focused on understanding and creating car setups and understanding the latest Fanatec software for the next wheel setting video.
-
-Intro 00:00
-Basic Settings 00:35
-Advanced Settings 04:55
-FFB Equaliser 10:25
-Base FFB Curve 12:25
-AC Rally Settings 13:20
-
-#moza #mozaracing #acr #acrally #assettocorsa #wheelsettings #deepdive
-
-## Notes
-
-YT=
-
-
 ## Summary
 
-# :material-icons:`settings` Краткое содержание 🏁
+# :settings: Краткое содержание 🏁
 
 - **Суть:** разбор настроек Moza R9 + AC Rally — какие параметры важны, почему и как их настроить для реалистичного и комфортного FFB.
 - **Цель:** дать практические значения и объяснения, чтобы получить сбалансированную отдачу от руля без «зернистости» или чрезмерной «онемелости».
 - **Ключевые рекомендации:** использовать аутентичные значения steering lock по машинам или выбрать удобную одну настройку; держать torque ~8–9 Nm; Natural damping 15–25%, Natural friction высокая (в игре S.E.R. — ~90), Inertia ~135; выключать Wheel spring; следить за grainy vibration при повышении low-frequency boost и при необходимости включать FFB interpolation.
 
-## :steering_wheel: Основные настройки (Basic Settings) — смысл, причина, польза
+## :wheel: Основные настройки (Basic Settings) — смысл, причина, польза
 
 - `Steering angle / Lock` — что и зачем:
   - Смысл: физический предел поворота руля в градусах (настройка отображается в гараже каждой машины).
