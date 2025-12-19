@@ -1,3 +1,4 @@
+
 ---
 created: 2025-12-19T13:38:12+01:00
 reviewed:
@@ -7,7 +8,7 @@ channel: "RALLY Technical"
 related:
   - "[[10.12 Videos]]"
 published: 2025-11-17
-image: "![](https://i.ytimg.com/vi/m82D0HhOVbo/maxresdefault.jpg)"
+image: https://i.ytimg.com/vi/m82D0HhOVbo/maxresdefault.jpg
 duration: "1005"
 watched:
 tags:
@@ -35,101 +36,111 @@ type:: #type/video/youtube/new
 In this video I deep dive into all the FFB settings available in the Moza Pit House Software and Assetto Corsa Rally. The settings you see on each screen are what I will be using to create my setups. I'm not saying these are the most realistic settings ever but just my interpretation from my on road, track and stage experiences.
 I will be playing around with these settings in the future to see if I can make them even more immersive but for now I will be very much focused on understanding and creating car setups and understanding the latest Fanatec software for the next wheel setting video.
 
-Intro 00:00
-Basic Settings 00:35
-Advanced Settings 04:55
-FFB Equaliser 10:25
-Base FFB Curve 12:25
-AC Rally Settings 13:20
+---
+created: 2025-12-19T13:38:12+01:00
+reviewed:
+source: "https://www.youtube.com/watch?v=m82D0HhOVbo"
+title: "Moza R9 Wheel Settings | DEEP DIVE [AC RALLY]"
+channel: "RALLY Technical"
+related:
+  - "[[10.12 Videos]]"
+published: 2025-11-17
+image: https://i.ytimg.com/vi/m82D0HhOVbo/maxresdefault.jpg
+duration: 1005
+watched:
+tags:
+---
 
-#moza #mozaracing #acr #acrally #assettocorsa #wheelsettings #deepdive
+## About
 
-## Notes
+type:: #type/video/youtube/new
 
-YT=
+<!-- YouTube preview (click thumbnail to open player) -->
+<div style="max-width:900px;margin:0 auto;position:relative;">
+  <a href="https://www.youtube.com/watch?v=m82D0HhOVbo" class="glightbox" data-type="video">
+    <img src="https://i.ytimg.com/vi/m82D0HhOVbo/maxresdefault.jpg" alt="Moza R9 Wheel Settings | DEEP DIVE [AC RALLY]" style="width:100%;border-radius:8px;display:block;">
+    <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:64px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6);">▶</span>
+  </a>
+  <p style="font-size:0.9rem;margin-top:8px;color:#555;text-align:center;">Нажмите на превью, чтобы открыть плеер YouTube в модальном окне.</p>
+</div>
 
+<!-- Fallback inline embed for environments without JS/lightbox support -->
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin-top:12px;">
+  <iframe src="https://www.youtube.com/embed/m82D0HhOVbo" title="Moza R9 Wheel Settings | DEEP DIVE [AC RALLY]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+</div>
 
-## Summary
+## Description
 
-# :material-icons:`settings` Краткое содержание 🏁
+Видео — глубокий разбор настроек FFB в Moza PitHouse и Assetto Corsa Rally: что влияет на ощущения, какие параметры важны и как их настроить практично.
 
-- **Суть:** разбор настроек Moza R9 + AC Rally — какие параметры важны, почему и как их настроить для реалистичного и комфортного FFB.
-- **Цель:** дать практические значения и объяснения, чтобы получить сбалансированную отдачу от руля без «зернистости» или чрезмерной «онемелости».
-- **Ключевые рекомендации:** использовать аутентичные значения steering lock по машинам или выбрать удобную одну настройку; держать torque ~8–9 Nm; Natural damping 15–25%, Natural friction высокая (в игре S.E.R. — ~90), Inertia ~135; выключать Wheel spring; следить за grainy vibration при повышении low-frequency boost и при необходимости включать FFB interpolation.
+Таймкоды:
 
-## :steering_wheel: Основные настройки (Basic Settings) — смысл, причина, польза
+- Intro — 00:00
+- Basic Settings — 00:35
+- Advanced Settings — 04:55
+- FFB Equaliser — 10:25
+- Base FFB Curve — 12:25
+- AC Rally Settings — 13:20
 
-- `Steering angle / Lock` — что и зачем:
-  - Смысл: физический предел поворота руля в градусах (настройка отображается в гараже каждой машины).
-  - Причина: разные машины имеют разный реальный lock; корректная настройка повышает соответствие реального поведения и удобство перехода между машинами.
-  - Практическая польза: установка аутентичного значения помогает избежать неожиданных резких поворотов; альтернатива — выбрать единый lock (напр., 540° или 900°) для простоты.
+Теги: #moza #mozaracing #acr #acrally #assettocorsa #wheelsettings #deepdive
 
-- `Force Feedback Intensity / Max torque` — что и зачем:
-  - Смысл: общий уровень интенсивности FFB и физический предел крутящего момента.
-  - Причина: в ралли-играх реальная зона чувствительности лежит в 8–9 Nm; если базовая аппаратура даёт больше — ограничить её.
-  - Практическая польза: установка `Max output torque ≈ 9 Nm` + FFB intensity 100% даёт полный динамический диапазон без перебора силы.
+!!! info "Источник"
+    YouTube: https://www.youtube.com/watch?v=m82D0HhOVbo
+    Канал: RALLY Technical
 
-- `Hands-off protection`:
-  - Смысл: механизм экстренной остановки движения руля при отпускании.
-  - Причина: защищает пальцы новичков с сильной отдачей DD-рулей.
-  - Практическая польза: включать только при реальной необходимости; иначе ломает естественное возвращение руля.
+## Краткая суть
 
-- `Max wheel speed`:
-  - Смысл: скорость возврата руля в ноль при отпускании.
-  - Причина: влияет на ощущение естественности центра.
-  - Практическая польза: большинство предпочитает ~30% как «натуральную» скорость возврата.
+- **Суть:** разбор настроек Moza R9 для AC Rally — разъяснение параметров и практические значения.
+- **Цель:** дать понятные значения и объяснения, чтобы получить сбалансированную отдачу руля без «зернистости».
 
-## :gear: Продвинутые настройки (Advanced) — объяснение и практические рекомендации
+## Основные настройки — смысл и польза
 
-- `Force feedback interpolation`:
-  - Смысл: сглаживает «зернистость» в FFB.
-  - Причина: некоторые частоты/игры генерируют шумы; интерполяция убирает их, но может смяглить детали.
-  - Практическая польза: оставить `0`, если зернистости нет; включать при появлении high-frequency noise.
+- `Steering angle / Lock` — физический предел поворота руля; рекомендуется синхронизировать с настройками игры или выбрать единый lock (например, 540°/900°).
+- `Max output torque` / `Force Feedback Intensity` — рекомендуемая рабочая зона для ралли: ≈8–9 Nm.
+- `Natural damping` — весомость руля; разумный диапазон 15–25% (часто 20%).
+- `Natural friction` — постоянное сопротивление; начальные значения ~90% (регулируйте по ощущениям).
+- `Natural inertia` — инертность руля; автор рекомендует ≈135.
+- `Wheel spring strength` — не рекомендуется для реалистичности (оставлять 0).
 
-- `FFB center dead zone compensation`:
-  - Смысл: коррекция центральной мёртвой зоны.
-  - Практическая польза: не трогать при отсутствии dead zone в руля — ставить `0`.
+## Продвинутые настройки — примечания
 
-- `Natural damping`:
-  - Смысл: общая «весомость» руля в разных ситуациях.
-  - Причина: повышает ощущение тяжести, но слишком низкое значение вызывает дрожание FFB.
-  - Практическая польза: ставить в диапазон `15–25%` (часто `20%` как комфортный баланс).
+- `FFB interpolation` — сглаживает высокочастотный шум, но смазывает детали; включать только при необходимости.
+- `FFB center dead zone compensation` — использовать, если есть заметная «мертвая зона» в руле.
+- `Speed dependent damping` и `Game damping` — подбирать аккуратно, чтобы не «онеметь» мелкие эффекты.
+- `Temperature control` — следить за нагревом мотора у DD-рулей; ПО может автоматически снижать силу.
 
-- `Natural friction`:
-  - Смысл: постоянное сопротивление руля (как бы трение в стойке).
-  - Причина: влияет на тонкую корректировку руля на прямой; в AC Rally автор поднял до `90%` из-за слишком «лёгкого» руля.
-  - Практическая польза: начните с `~90%`, регулируйте по ощущениям; слишком высокая фрикция может утомлять.
+## Практический чеклист — перед заездом
 
-- `Natural inertia`:
-  - Смысл: ощущаемая «инертность» руля при быстрых изменениях.
-  - Практическая польза: автор рекомендует `~135`; многие ставят до `200+` для более «тяжёлой» отдачи.
+- Откалибруйте руль и отключите `Wheel spring`.
+- PitHouse: `Max output torque = 9 Nm`, `Natural damping = 20%`, `Natural friction = 90%`, `Natural inertia = 135`, `FFB interpolation = 0`.
+- В AC Rally: `Gain = 90–100%`, `Game damper` — подбирается под ПО, синхронизируйте `steering lock`.
 
-- `Wheel spring strength` — критичное замечание:
-  - Смысл: «пружина», возвращающая руль к центру с одинаковой скоростью.
-  - Причина проблемы: в реальных авто центрирование не является жёсткой пружиной; постоянная пружина делает ощущения неаутентичными.
-  - Практическая польза: **не использовать** (оставлять `0`) для реалистичного поведения.
+```ini
+# Пример конфигурации (PitHouse)
+max_output_torque = 9  # Nm
+force_feedback_intensity = 100
+natural_damping = 20
+natural_friction = 90
+natural_inertia = 135
+ffb_interpolation = 0
+low_eq_10hz = 110
+eq_15hz = 130
+eq_25hz = 120
+eq_40hz = 100
+eq_60hz = 100
+ffb_curve = linear
+```
 
-- `Gear shift vibration intensity`:
-  - Смысл: вибрация при переключении передач.
-  - Практическая польза: у автора не заметно эффекта даже на `5`; проверить на конкретных конфигурациях.
+!!! warning
+    Не используйте `wheel spring strength` для «реализма» — это искусственный эффект, который искажает поведение руля.
 
-- `Direct input / Game damping`:
-  - Смысл: дополнительная внутриигровая демпфирующая компонента (доступна в AC Rally).
-  - Практическая польза: автор выставил `100%` в PitHouse и `20%` реального damping в игре — цель: получить точное соответствие значениям игры и ПО.
+## Итог — коротко
 
-- `Speed dependent damping`:
-  - Смысл: увеличивает демпфирование с ростом скорости.
-  - Причина: может «онеметь» мелкие эффекты на высоких скоростях.
-  - Практическая польза: в современных играх обычно не нужен; отключать или минимизировать, если хотите чувствовать мелкие неровности.
+- Ограничьте `Max torque` до ≈9 Nm; отключите `Wheel spring`.
+- Держите `Natural damping` ≈20% и `Natural friction` ≈90%.
+- Повышайте low-frequency EQ осторожно — значения выше ~40% могут вызвать grainy; при шуме включайте `FFB interpolation`.
+- Синхронизируйте `steering lock` между PitHouse и игрой или используйте единое значение.
 
-- `Temperature control`:
-  - Смысл: ПО снижает силу FFB при достижении температуры для защиты мотора.
-  - Практическая польза: понимать пороги (`conservative` 50°C/50% и `radical` 60°C/60%) — важно на длительных сессиях для DD-рулей.
-
-## :equalizer: FFB Equaliser — частоты, причины, советы
-
-- `Low-end / High-end` (пример автора):
-  - Смысл: низкие частоты — большие удары; высокие — мелкие вибрации.
   - Практическая польза: повышая low-end вы усиливаете «большие удары» от неровностей; повышая high-end — детали дорожного покрытия.
 
 - Рекомендованные уровни (автор):
@@ -192,23 +203,11 @@ YT=
 
 ## :clipboard: Практический чеклист — быстрые шаги перед заездом
 
-- Откалибруйте руль и выключите `wheel spring strength`.
 
-- Установите в PitHouse:
 
-- `Max output torque` = `9 Nm` (или снижайте до 8–9 Nm, если ваш мотор мощнее).
-- `Natural damping` = `20%`.
-- `Natural friction` = `~90%` (регулировать).
-- `Natural inertia` = `135`.
-- `FFB interpolation` = `0` (включать только при зернистости).
 
-- В FFB Equaliser выставьте приведённые значения (см. секцию Equaliser).
 
-- В AC Rally установите:
 
-- `Gain` = `90–100%` (начать с 90%).
-- `Game damper` = значение, эквивалентное вашей PitHouse настройке (автор использует 20% эквивалент).
-- `Steering lock` — синхронизировать с PitHouse или выбрать одну общую для всех машин.
 
 ```ini
 # Пример конфигурации (PitHouse)
@@ -227,7 +226,6 @@ ffb_curve = linear
 ```
 
 ## !!! warning
-
 - Не используйте `wheel spring strength` для «реализма» — это искусственный эффект, который искажает поведение руля.
 
 ## :white_check_mark: Краткий практичный итог
