@@ -30,8 +30,6 @@ type:: #type/video/youtube/new
   <iframe src="https://www.youtube.com/embed/m82D0HhOVbo" title="Moza R9 Wheel Settings | DEEP DIVE [AC RALLY]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
 </div>
 
-# :gear: Краткое содержание 🏁
-
 - **Суть:** разбор настроек Moza R9 + AC Rally — какие параметры важны, почему и как их настроить для реалистичного и комфортного FFB.
 - **Цель:** дать практические значения и объяснения, чтобы получить сбалансированную отдачу от руля без «зернистости» или чрезмерной «онемелости».
 - **Ключевые рекомендации:** использовать аутентичные значения steering lock по машинам или выбрать удобную одну настройку; держать torque ~8–9 Nm; Natural damping 15–25%, Natural friction высокая (в игре S.E.R. — ~90), Inertia ~135; выключать Wheel spring; следить за grainy vibration при повышении low-frequency boost и при необходимости включать FFB interpolation.
