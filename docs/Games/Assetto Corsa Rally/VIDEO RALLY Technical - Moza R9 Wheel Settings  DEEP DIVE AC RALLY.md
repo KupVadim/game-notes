@@ -12,7 +12,7 @@ duration: "1005"
 watched:
 tags:
 ---
-## About
+# Moza R9 Wheel Settings | DEEP DIVE [AC RALLY]
 
 type:: #type/video/youtube/new
 
@@ -29,8 +29,6 @@ type:: #type/video/youtube/new
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;margin-top:12px;">
   <iframe src="https://www.youtube.com/embed/m82D0HhOVbo" title="Moza R9 Wheel Settings | DEEP DIVE [AC RALLY]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
 </div>
-
-## Summary
 
 # :gear: Краткое содержание 🏁
 
