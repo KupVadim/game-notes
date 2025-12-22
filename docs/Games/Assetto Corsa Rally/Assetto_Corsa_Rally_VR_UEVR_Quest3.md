@@ -27,18 +27,18 @@ tags:
 
 ## 🧩 Сетап
 
-=== "Железо"
+- "Железо"
     - GPU: **RTX 4080 Super**
     - CPU: i5 / i7 (не критично)
     - RAM: 32 GB
     - OS: Windows 11
 
-=== "VR"
+- "VR"
     - **Meta Quest 3**
     - **Virtual Desktop**
     - Target FPS: **72**
 
-=== "ПО"
+- "ПО"
     - Assetto Corsa Rally
     - **UEVR (Universal Unreal Engine VR Injector)**
 
