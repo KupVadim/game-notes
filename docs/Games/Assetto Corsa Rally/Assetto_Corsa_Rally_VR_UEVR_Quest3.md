@@ -38,15 +38,15 @@ tags:
 ### VR / Streaming
 - **Meta Quest 3**
 - **Virtual Desktop**
-- VR Graphics Quality: **Ultra**
-- Target FPS: **72**
-- Bitrate: **200 Mbps**
-- Wi‑Fi 5 GHz с линком ~2400 Mbps — достаточно
+    - VR Graphics Quality: **Ultra**
+    - Target FPS: **72**
+    - Bitrate: **200 Mbps** - ну или под свой WiFi
+    - Wi‑Fi 5 GHz с линком ~2400 Mbps — достаточно
 
 ### ПО
-- Assetto Corsa Rally
-- **UEVR (Nightly builds)**
-- OpenXR Toolkit (опционально)
+- Assetto Corsa Rally 
+- **UEVR (Nightly builds)** -> https://github.com/praydog/UEVR-nightly/releases
+- OpenXR Toolkit -> https://mbucchia.github.io/OpenXR-Toolkit/#downloads
 
 ---
 
