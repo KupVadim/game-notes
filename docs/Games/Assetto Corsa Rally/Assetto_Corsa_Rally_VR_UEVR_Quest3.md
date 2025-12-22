@@ -1,6 +1,6 @@
 ---
 title: Assetto Corsa Rally — VR через UEVR (Quest 3)
-description: Практический гайд по настройке UEVR для Assetto Corsa Rally. Quest 3, Virtual Desktop, RTX 4080 Super.
+description: Полный практический гайд по настройке UEVR для Assetto Corsa Rally. Quest 3, Virtual Desktop, RTX 4080 Super. С пояснениями почему именно такие значения.
 tags:
   - VR
   - UEVR
@@ -12,169 +12,132 @@ tags:
 
 # 🥽 Assetto Corsa Rally в VR через UEVR
 
-!!! warning "Важно"  
+!!! warning "Важно"
     Assetto Corsa Rally **не имеет нативного VR**.  
-    Всё ниже — компромисс между качеством, FPS и стабильностью.
+    UEVR — это инжектор. Цель гайда — не «красиво», а **стабильно и играбельно**.
 
 ---
 
 ## 🎯 Цель гайда
 
-- Получить **стабильные 72 FPS**
-- Минимизировать укачивание
-- Понять, **где пределы UEVR**
+- **Стабильные 72 FPS**
+- Предсказуемая яркость (без автоэкспозиции)
+- Минимум микростаттеров
+- Приоритет читаемости трассы и окружения в VR
 
 ---
 
-## 🧩 Сетап
+## 🧩 Начальные требования
 
-- "Железо"
-    - GPU: **RTX 4080 Super**
-    - CPU: i5 / i7 (не критично)
-    - RAM: 32 GB
-    - OS: Windows 11
+### Железо
+- GPU: **RTX 4080 Super**
+- CPU: **i5-13600KF**
+- RAM: 32 GB
+- OS: Windows 11
 
-- "VR"
-    - **Meta Quest 3**
-    - **Virtual Desktop**
-    - Target FPS: **72**
+### VR / Streaming
+- **Meta Quest 3**
+- **Virtual Desktop**
+- VR Graphics Quality: **Ultra**
+- Target FPS: **72**
+- Bitrate: **200 Mbps**
+- Wi‑Fi 5 GHz с линком ~2400 Mbps — достаточно
 
-- "ПО"
-    - Assetto Corsa Rally
-    - **UEVR (Universal Unreal Engine VR Injector)**
+### ПО
+- Assetto Corsa Rally
+- **UEVR (Nightly builds)**
+- OpenXR Toolkit (опционально)
 
 ---
 
-## 🧪 UEVR Nightly Builds (рекомендуется)
-
-Используй актуальные **nightly-сборки UEVR** — они чаще всего стабильнее релизов:
+## 🧪 UEVR Nightly Builds
 
 👉 https://github.com/praydog/UEVR-nightly/releases
-
-!!! info
-    Nightly-версии часто содержат исправления под конкретные версии Unreal Engine  
-    и лучше подходят для UEVR-инжекта.
-
-!!! warning
-    Это экспериментальные сборки.  
-    Если появились баги — просто откатись на предыдущую версию.
-
----
-
-## 🧠 OpenXR Toolkit (опционально)
-
-OpenXR Toolkit может использоваться для:
-
-- апскейла
-- шарпинга
-- foveated rendering
-- eye-tracking (если поддерживается шлемом)
-
-👉 Документация:  
-https://mbucchia.github.io/OpenXR-Toolkit/#eye-tracking-feature
-
-!!! warning
-    **OpenXR Toolkit не всегда стабилен в связке с UEVR.**  
-    Возможны:
-    - вылеты при старте
-    - чёрный экран
-    - потеря ввода
-    - некорректный scale / projection
-
-!!! tip
-    Если появились проблемы — **первым делом отключи OpenXR Toolkit**  
-    и проверь работу UEVR без него.
-
----
-
-## ⬇️ Установка UEVR
-
-1. Скачай нужную версию UEVR (release или nightly)
-2. Распакуй в отдельную папку
-
-!!! warning
-    Антивирус может ругаться — это нормально для инжекторов.
 
 ---
 
 ## 🚀 Запуск игры и инжект
 
-1. Запусти **Assetto Corsa Rally** обычным способом
+1. Запусти **Assetto Corsa Rally**
 2. Дождись главного меню
 3. Запусти `UEVR.exe`
-3. Нажми **Restart as Administrator** если запускал не под админом
-4. Нажми **Inject**
-
-!!! tip
-    Если экран чёрный — Alt+Tab и проверь активное окно игры.
+4. Нажми **Restart as Administrator**
+5. Нажми **Inject**
+6. Runtime: **OpenXR**
 
 ---
 
-## 🛠 Настройки UEVR
+## 🎚 UEVR
 
-### Рекомендованный минимум
+!!! important
+    Включите Advanced Mode -> `Show Advanced Options`
 
-```text
-Projection: Stereo
-World Scale: 1.0
-Stereo Separation: Default
+
+
+- Console\CVars
+    - r.Color.Max = 0.775
+    - r.Color.Mid = 0.328
+    - r.Color.Min = 0.000
+    - r.TonemapperGamma = 2.0
+    - r.TonemapperSharpen = 1.3
+    - r.MotionBlur.Max = -1
+    - r.SceneColorFringe.Max = -1
+    - r.TemporalAA.Upsampling = 0
+
+---
+
+## 🧾 Auto Exposure OFF
+
+В Console\CVars нажимаем Display Console и пишем в консоле
+
+```ini
+r.DefaultFeature.AutoExposure 0
+r.EyeAdaptationQuality 0
 ```
 
-!!! danger
-    Не крути все ползунки подряд.  
-    UEVR **не про «накрутить красиво»**, а про стабильность.
+---
+
+## 🧠 OpenXR Toolkit
+
+👉 https://mbucchia.github.io/OpenXR-Toolkit/#downloads
+
+- Fixed Foveated Rendering
+- Mode: **Quality**
+- Pattern: **Wide**
+
+Даёт несколько дополнительных FPS и помогает удержать 72.
 
 ---
 
-## 📡 Virtual Desktop — ключевые параметры
+## 🎮 Assetto Corsa Rally — Graphics
 
-- "Streaming"
-    - Codec: **HEVC**
-    - Bitrate: 120–150 Mbps
-    - SSW: **Off / Auto**
+!!! note "DLSS 4"
+    Я не знаю какой DLSS по умолчанию в игре, но я всегда сразу заменяю на последний DLSS. Скачал тут https://www.techpowerup.com/download/nvidia-dlss-dll/ 
+    - заменяем `c:\Program Files (x86)\Steam\steamapps\common\Assetto Corsa Rally\Engine\Plugins\nvidia\DLSS\Binaries\ThirdParty\Win64\nvngx_dlss.dll` (или где там у вас игры Steam) на скачанный `nvngx_dlss.dll`
 
-- "Performance"
-    - Spacewarp: по ситуации
-    - Snapdragon Super Resolution: *опционально*
+### Upscaling
+- DLSS
+- Resolution Scale: 75% - в принципе можно увеличивать, если другие параметры понижать
+- Frame Generation: OFF
 
-!!! note
-    Spacewarp может спасти FPS, но ухудшает отклик руля.
-
----
-
-## 🎮 Настройки Assetto Corsa Rally
-
-### Отключить сразу
-- Motion Blur
-- Eye Adaptation
-- Film Grain
-
-### Оставить осторожно
-- Shadows: Medium
-- Textures: High
-
-!!! warning
-    «Мыло» часто идёт от апскейла, а не от VR.
-
----
-
-## 🧯 Частые проблемы
-
-### Просадки FPS при записи
-- ❌ Запись VR напрямую
-- ✅ Запись **Companion / Desktop window**
-
-### Чёрный экран после инжекта
-- Проверить fullscreen mode
-- Перезапустить игру **без перезапуска UEVR**
+### Quality
+- Texture: HIGH
+- Shadows: VERY LOW
+- Clouds: LOW
+- Post Process: LOW
+- Foliage: ULTRA - для меня деревья важнее теней. Меня бесит когда прогружаются деревья перед носом. Если хотите выше базовое разрешение - ставьте тогда VeryLow, они хоть не прогружаются, а всегда кривые :)
+- Grass: MEDIUM
+- Effects: MEDIUM
+- Car Damage: HIGH
+- Crowd: MEDIUM
+- Interactive Elements: VERY LOW
+- Car LCD: LOW
 
 ---
 
 ## ✅ Итог
 
-- UEVR **работает**
-- Это **не нативный VR**
-- Nightly-сборки предпочтительнее
-- OpenXR Toolkit — **опционально и осторожно**
-- 72 FPS — реалистичная цель
-- Для ралли VR даёт **лучшее чувство машины**
+- UEVR Nightly обязателен
+- OpenXR Toolkit реально помогает
+- Деревья важнее теней
+- 72 FPS достижимы
