@@ -7,11 +7,12 @@ tags:
   - Assetto Corsa Rally
   - Quest 3
   - Virtual Desktop
+  - OpenXR Toolkit
 ---
 
 # 🥽 Assetto Corsa Rally в VR через UEVR
 
-!!! warning "Важно!"
+!!! warning "Важно"  
     Assetto Corsa Rally **не имеет нативного VR**.  
     Всё ниже — компромисс между качеством, FPS и стабильностью.
 
@@ -44,11 +45,52 @@ tags:
 
 ---
 
+## 🧪 UEVR Nightly Builds (рекомендуется)
+
+Используй актуальные **nightly-сборки UEVR** — они чаще всего стабильнее релизов:
+
+👉 https://github.com/praydog/UEVR-nightly/releases
+
+!!! info
+    Nightly-версии часто содержат исправления под конкретные версии Unreal Engine  
+    и лучше подходят для UEVR-инжекта.
+
+!!! warning
+    Это экспериментальные сборки.  
+    Если появились баги — просто откатись на предыдущую версию.
+
+---
+
+## 🧠 OpenXR Toolkit (опционально)
+
+OpenXR Toolkit может использоваться для:
+
+- апскейла
+- шарпинга
+- foveated rendering
+- eye-tracking (если поддерживается шлемом)
+
+👉 Документация:  
+https://mbucchia.github.io/OpenXR-Toolkit/#eye-tracking-feature
+
+!!! warning
+    **OpenXR Toolkit не всегда стабилен в связке с UEVR.**  
+    Возможны:
+    - вылеты при старте
+    - чёрный экран
+    - потеря ввода
+    - некорректный scale / projection
+
+!!! tip
+    Если появились проблемы — **первым делом отключи OpenXR Toolkit**  
+    и проверь работу UEVR без него.
+
+---
+
 ## ⬇️ Установка UEVR
 
-1. Скачать релиз UEVR с GitHub
-2. Распаковать в отдельную папку
-3. **Не запускать игру через UEVR**
+1. Скачай нужную версию UEVR (release или nightly)
+2. Распакуй в отдельную папку
 
 !!! warning
     Антивирус может ругаться — это нормально для инжекторов.
@@ -60,6 +102,7 @@ tags:
 1. Запусти **Assetto Corsa Rally** обычным способом
 2. Дождись главного меню
 3. Запусти `UEVR.exe`
+3. Нажми **Restart as Administrator** если запускал не под админом
 4. Нажми **Inject**
 
 !!! tip
@@ -85,12 +128,12 @@ Stereo Separation: Default
 
 ## 📡 Virtual Desktop — ключевые параметры
 
-=== "Streaming"
+- "Streaming"
     - Codec: **HEVC**
     - Bitrate: 120–150 Mbps
     - SSW: **Off / Auto**
 
-=== "Performance"
+- "Performance"
     - Spacewarp: по ситуации
     - Snapdragon Super Resolution: *опционально*
 
@@ -131,5 +174,7 @@ Stereo Separation: Default
 
 - UEVR **работает**
 - Это **не нативный VR**
+- Nightly-сборки предпочтительнее
+- OpenXR Toolkit — **опционально и осторожно**
 - 72 FPS — реалистичная цель
 - Для ралли VR даёт **лучшее чувство машины**
