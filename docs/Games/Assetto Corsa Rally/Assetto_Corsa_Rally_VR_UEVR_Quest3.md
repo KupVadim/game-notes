@@ -113,6 +113,7 @@ r.EyeAdaptationQuality 0
 
 !!! note "DLSS 4"
     Я не знаю какой DLSS по умолчанию в игре, но я всегда сразу заменяю на последний DLSS. Скачал тут https://www.techpowerup.com/download/nvidia-dlss-dll/ 
+    
     - заменяем `c:\Program Files (x86)\Steam\steamapps\common\Assetto Corsa Rally\Engine\Plugins\nvidia\DLSS\Binaries\ThirdParty\Win64\nvngx_dlss.dll` (или где там у вас игры Steam) на скачанный `nvngx_dlss.dll`
 
 ### Upscaling
