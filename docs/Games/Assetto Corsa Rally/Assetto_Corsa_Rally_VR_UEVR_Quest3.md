@@ -103,7 +103,8 @@ tags:
 !!! important "Не забудь"
     Включите Advanced Mode -> `Show Advanced Options`
 
-
+!!! hint "Как закрыть окно UEVR"
+    Просто нажми insert кнопку на клаве
 
 - Console\CVars
     - r.Color.Max = 0.775
