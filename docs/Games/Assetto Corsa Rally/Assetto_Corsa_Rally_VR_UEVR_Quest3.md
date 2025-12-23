@@ -12,7 +12,18 @@ tags:
 
 # 🥽 Assetto Corsa Rally в VR через UEVR
 
-!!! warning "Важно"
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+  <iframe
+    src="https://www.youtube.com/embed/rCY9pY0OvLY"
+    title="Assetto Corsa Rally – Community Q&A #1"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="position:absolute;top:0;left:0;width:100%;height:100%;">
+  </iframe>
+</div>
+
+!!! danger "Важно"
     Assetto Corsa Rally **не имеет нативного VR**.  
     UEVR — это инжектор. Цель гайда — не «красиво», а **стабильно и играбельно**.
 
