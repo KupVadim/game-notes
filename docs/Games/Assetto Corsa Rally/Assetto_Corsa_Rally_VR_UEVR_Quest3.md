@@ -12,16 +12,33 @@ tags:
 
 # 🥽 Assetto Corsa Rally в VR через UEVR
 
-<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
-  <iframe
-    src="https://www.youtube.com/embed/rCY9pY0OvLY"
-    title="Assetto Corsa Rally – Community Q&A #1"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-    style="position:absolute;top:0;left:0;width:100%;height:100%;">
-  </iframe>
+<div style="position:relative;max-width:100%;border-radius:8px;overflow:hidden;">
+  <a href="https://www.youtube.com/watch?v=rCY9pY0OvLY" target="_blank" rel="noopener">
+    <img
+      src="https://img.youtube.com/vi/rCY9pY0OvLY/maxresdefault.jpg"
+      alt="Assetto Corsa Rally VR через UEVR"
+      style="width:100%;display:block;"
+    />
+    <div style="
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:68px;
+      height:48px;
+      background:rgba(0,0,0,0.6);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;">
+      <svg viewBox="0 0 68 48" width="34" height="24">
+        <path d="M66.52 7.74a8 8 0 0 0-5.6-5.66C56.05 0.67 34 0.67 34 0.67s-22.05 0-26.92 1.41a8 8 0 0 0-5.6 5.66A83.4 83.4 0 0 0 0 24a83.4 83.4 0 0 0 1.48 16.26 8 8 0 0 0 5.6 5.66C11.95 47.33 34 47.33 34 47.33s22.05 0 26.92-1.41a8 8 0 0 0 5.6-5.66A83.4 83.4 0 0 0 68 24a83.4 83.4 0 0 0-1.48-16.26z" fill="#FF0000"/>
+        <path d="M45 24 27 14v20" fill="#fff"/>
+      </svg>
+    </div>
+  </a>
 </div>
+
 
 !!! danger "Важно"
     Assetto Corsa Rally **не имеет нативного VR**.  
