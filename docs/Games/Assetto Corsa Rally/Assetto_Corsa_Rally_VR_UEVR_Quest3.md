@@ -83,7 +83,7 @@ tags:
 
 ## 🎚 UEVR
 
-!!! important
+!!! important "Не забудь"
     Включите Advanced Mode -> `Show Advanced Options`
 
 
