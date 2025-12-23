@@ -13,7 +13,7 @@ tags:
 # 🥽 Assetto Corsa Rally в VR через UEVR
 
 <div style="position:relative;max-width:100%;border-radius:8px;overflow:hidden;">
-  <a href="https://www.youtube.com/watch?v=rCY9pY0OvLY" target="_blank" rel="noopener">
+  <a href="https://www.youtube.com/watch?v=ce5ZOphgPvY" target="_blank" rel="noopener">
     <img
       src="https://img.youtube.com/vi/rCY9pY0OvLY/maxresdefault.jpg"
       alt="Assetto Corsa Rally VR через UEVR"
