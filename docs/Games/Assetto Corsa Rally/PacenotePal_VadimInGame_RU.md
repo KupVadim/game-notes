@@ -35,7 +35,7 @@ D:\Games\PacenotePal\
 
 Скачайте мой голосовой пакет:
 
-**<LINK>**
+[VadimInGame - Русский штурман](https://release-assets.githubusercontent.com/github-production-release-asset/1099346847/b8fb4e02-d46a-4650-b571-d884ee0556ba?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-12-27T02%3A29%3A02Z&rscd=attachment%3B+filename%3DPacenotePal.zip&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2025-12-27T01%3A28%3A16Z&ske=2025-12-27T02%3A29%3A02Z&sks=b&skv=2018-11-09&sig=6Ds2WOmCNRkmXZa7SHdQsAeemx%2FRN3yFJ3fHslVkSik%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc2NjgwMjQ5NiwibmJmIjoxNzY2Nzk4ODk2LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.THcaZafbMRj6igV4HivxLRWev3bxTcIX0yYgaEiA2ps&response-content-disposition=attachment%3B%20filename%3DPacenotePal.zip&response-content-type=application%2Foctet-stream)
 
 ---
 
