@@ -59,7 +59,7 @@ PacenotePal\voices\
 ```
 PacenotePal\
  └─ voices\
-    └─ VadimInGame - Русский\
+    └─ VadimInGame - Русский Штурман\
 ```
 
 !!! warning
