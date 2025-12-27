@@ -35,7 +35,7 @@ D:\Games\PacenotePal\
 
 Скачайте мой голосовой пакет:
 
-[VadimInGame - Русский штурман](https://github.com/50fa812a-8de1-40ed-b86f-97943f818579)
+[Скачать голосовой пакет VadimInGame — Русский](files/VadimInGame - Русский Штурман.zip)
 
 ---
 
