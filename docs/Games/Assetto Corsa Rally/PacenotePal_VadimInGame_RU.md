@@ -2,6 +2,33 @@
 
 Это руководство описывает установку и настройку моего русского голосового пакета для **PacenotePal**.
 
+<div style="position:relative;max-width:100%;border-radius:8px;overflow:hidden;">
+  <a href="https://www.youtube.com/watch?v=nNCoo5HCCCw" target="_blank" rel="noopener">
+    <img
+      src="https://img.youtube.com/vi/nNCoo5HCCCw/maxresdefault.jpg"
+      alt="Assetto Corsa Rally VR через UEVR"
+      style="width:100%;display:block;"
+    />
+    <div style="
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:68px;
+      height:48px;
+      background:rgba(0,0,0,0.6);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;">
+      <svg viewBox="0 0 68 48" width="34" height="24">
+        <path d="M66.52 7.74a8 8 0 0 0-5.6-5.66C56.05 0.67 34 0.67 34 0.67s-22.05 0-26.92 1.41a8 8 0 0 0-5.6 5.66A83.4 83.4 0 0 0 0 24a83.4 83.4 0 0 0 1.48 16.26 8 8 0 0 0 5.6 5.66C11.95 47.33 34 47.33 34 47.33s22.05 0 26.92-1.41a8 8 0 0 0 5.6-5.66A83.4 83.4 0 0 0 68 24a83.4 83.4 0 0 0-1.48-16.26z" fill="#FF0000"/>
+        <path d="M45 24 27 14v20" fill="#fff"/>
+      </svg>
+    </div>
+  </a>
+</div>
+
 Гайд ориентирован на быстрый запуск без лишних действий.
 
 ---
